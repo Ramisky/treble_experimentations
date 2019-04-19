@@ -209,7 +209,7 @@ function get_rom_type() {
                 mainrepo="https://github.com/BootleggersROM/manifest.git"
                 mainbranch="pie"
                 localManifestBranch="android-9.0"
-                treble_generate="bootleggers"
+                treble_generate="bootleg"
                 extra_make_options="WITHOUT_CHECK_API=true"
                 ;;
 	    descendant)
