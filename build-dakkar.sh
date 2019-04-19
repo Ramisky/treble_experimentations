@@ -130,8 +130,8 @@ function get_rom_type() {
                 ;;
             rr)
                 mainrepo="https://github.com/ResurrectionRemix/platform_manifest.git"
-                mainbranch="oreo"
-                localManifestBranch="android-8.1"
+                mainbranch="pie"
+                localManifestBranch="android-9.0"
                 treble_generate="rr"
                 extra_make_options="WITHOUT_CHECK_API=true"
                 ;;
@@ -196,6 +196,27 @@ function get_rom_type() {
                 mainbranch="pie"
                 localManifestBranch="android-9.0"
                 treble_generate="havoc"
+                extra_make_options="WITHOUT_CHECK_API=true"
+                ;;
+	    dot)
+                mainrepo="https://github.com/DotOS/manifest.git"
+                mainbranch="pie"
+                localManifestBranch="android-9.0"
+                treble_generate="dot"
+                extra_make_options="WITHOUT_CHECK_API=true"
+                ;;
+	    bootleggers)
+                mainrepo="https://github.com/BootleggersROM/manifest.git"
+                mainbranch="pie"
+                localManifestBranch="android-9.0"
+                treble_generate="bootleggers"
+                extra_make_options="WITHOUT_CHECK_API=true"
+                ;;
+	    descendant)
+                mainrepo="https://github.com/Descendant/manifest.git"
+                mainbranch="pie"
+                localManifestBranch="android-9.0"
+                treble_generate="descendant"
                 extra_make_options="WITHOUT_CHECK_API=true"
                 ;;
         esac
@@ -341,13 +362,6 @@ function patch_things() {
     fi
 }
 
-function build_variant() {
-    lunch "$1"
-    make $extra_make_options BUILD_NUMBER="$rom_fp" installclean
-    make $extra_make_options BUILD_NUMBER="$rom_fp" -j "$jobs" systemimage
-    make $extra_make_options BUILD_NUMBER="$rom_fp" vndk-test-sepolicy
-    cp "$OUT"/system.img release/"$rom_fp"/system-"$2".img
-}
 
 function jack_env() {
     RAM=$(free | awk '/^Mem:/{ printf("%0.f", $2/(1024^2))}') #calculating how much RAM (wow, such ram)
@@ -385,7 +399,3 @@ patch_things
 jack_env
 
 . build/envsetup.sh
-
-for (( idx=0; idx < ${#variant_codes[*]}; idx++ )); do
-    build_variant "${variant_codes[$idx]}" "${variant_names[$idx]}"
-done
