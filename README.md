@@ -15,7 +15,7 @@ For example:
 
     git clone https://github.com/phhusson/treble_experimentations
     mkdir Lineage; cd Lineage
-    bash ../treble_experimentations/build-dakkar.sh rr
+    bash ../treble_experimentations/build-ramyski.sh rr
     arm-aonly-gapps-su
     arm64-ab-go-nosu
     lunch treble_arm64_avN-userdebug
@@ -34,3 +34,6 @@ doesn't understand
   by this change
 * `[userfriendly]` This commit is NOT used for hardware support, but
   to make the rom more user friendly
+
+@phhusson for all his contributions, without his efforts this can't be possible.
+@Dakkar for This build script
