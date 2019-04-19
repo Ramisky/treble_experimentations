@@ -15,35 +15,14 @@ For example:
 
     git clone https://github.com/phhusson/treble_experimentations
     mkdir Lineage; cd Lineage
-    bash ../treble_experimentations/build-rom.sh android-8.1 lineage
-
-## More flexible build script
-
-(this has been tested much less)
-
-  bash ../treble_experimentations/build-dakkar.sh rr \
-    arm-aonly-gapps-su \
+    bash ../treble_experimentations/build-dakkar.sh rr
+    arm-aonly-gapps-su
     arm64-ab-go-nosu
+    lunch treble_arm64_avN-userdebug
+    WITHOUT_CHECK_API=true make -j8 systemimage
 
 The script should provide a help message if you pass something it
 doesn't understand
-
-# Using Docker
-
-clone this repository, then:
-
-    docker build -t treble docker/
-    
-    docker container create --name treble treble
-    
-    docker run -ti \
-        -v $(pwd):/treble \
-        -v $(pwd)/../treble_output:/treble_output \
-        -w /treble_output \
-        treble \
-        /bin/bash /treble/build-dakkar.sh rr \
-        arm-aonly-gapps-su \
-        arm64-ab-go-nosu
 
 # Conventions for commit messages:
 
