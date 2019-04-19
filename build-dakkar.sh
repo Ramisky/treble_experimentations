@@ -337,6 +337,8 @@ function init_patches() {
 
 function sync_repo() {
     repo sync -c -j "$jobs" -f --force-sync --no-tag --no-clone-bundle --optimized-fetch --prune
+    rm -rf device/phh/treble
+    git clone https://github.com/Ramyski/device_phh_treble device/phh/treble #to make it clone my forked tree instead
 }
 
 function patch_things() {
